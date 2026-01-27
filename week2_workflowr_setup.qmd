@@ -1,0 +1,131 @@
+*This assignment is due by 1/28/2026 at 8am.*
+
+## Overview
+
+This assignment builds directly on the workflowr vignette:
+<https://workflowr.github.io/workflowr/articles/wflow-01-getting-started.html>.
+Your goal is to create a new workflowr project with a clean structure,
+publish at least one analysis file, and make it available as a GitHub Pages site.
+
+I don't expect that you necessarily use `workflowr` in the class or more generally, but
+I think it is useful to see how the package takes a structured approach to:
+
+1. Setting up a predictable project structure
+2. Uses Git to support version control and reproducibility
+3. Allows you to publish your reports easily at GitHub Pages accessible to others.
+
+## Learning goals
+
+- Initialize a workflowr project with a reproducible structure
+- Knit analysis files with workflowr and track the build status
+- Publish a workflowr site to GitHub Pages
+
+## Setup requirements
+
+Before starting, make sure you have:
+
+- R and RStudio installed
+- Git installed and configured (For help, see: https://happygitwithr.com)
+- A GitHub account
+- The `workflowr` package installed
+
+```{r, eval=FALSE}
+# Install once if needed
+install.packages("workflowr")
+
+```
+
+## Tasks
+
+### 1. Start a new workflowr project
+
+Create a new project named something like `workflowr-<your-name>` in a location you can find later. The
+`wflow_start` command will setup a new workflowr project in the speecified directory (by
+default, it does not overwrite existing projects).
+
+```{r, eval = FALSE}
+set(wd)
+library(workflowr) # load library
+wflow_start("~/Downloads/UNC/2025-2026/Academics 25-26/workflowrpower")
+```
+
+Open the project in RStudio (File > Open Project) and review the default folders:
+`analysis/`, `data/`, `code/`, `output/`, and `docs/`.
+
+### 2. Create a new analysis file
+
+Create a new analysis Rmarkdown file at `analysis/01-getting-started.Rmd`. You can use `wflow_open` if you wish, or just
+File > New File > R Markdown. 
+
+In the Rmd file, include the following:
+
+- A short paragraph describing the project topic you plan to use this semester
+- Add a small public domain data file to the `data/` folder (e.g., a CSV from data.gov or another public domain source).
+- One code chunk that reads your data file from `data/` and prints a small summary (e.g., `str()` or `summary()`)
+
+### 3. Build and check the site locally
+
+Use workflowr to build the site and check its status.
+
+```{r, eval = FALSE}
+getwd()
+file.exists("analysis/01-getting-started.Rmd")
+wflow_build("analysis/01-getting-started.Rmd") # build only one script
+wflow_build() # build the whole site
+wflow_status() # check the build status
+```
+wflow_build("analysis/01-getting-started.Rmd") # build only one script
+wflow_build() # build the whole site
+wflow_status() # check the build status
+```
+
+### 4. Publish and commit with workflowr
+
+Publish the new analysis page using workflowr so it is tracked by Git.
+
+```{r, eval = FALSE}
+wflow_publish("analysis/01-getting-started.Rmd", message = "Add initial analysis page") # committing your work to the repository
+```
+
+### 5. Push to GitHub and enable GitHub Pages
+
+After publishing (basically concretizing a change), connect the project to GitHub with your username:
+
+Setup your Github repository using the `wflow_use_github` function.
+I chose the Oauth route when prompted, but either is fine.
+
+```{r, eval = FALSE}
+wflow_use_github("myname")
+```
+
+Now push the code from your computer to Github
+
+```{r, eval = FALSE}
+wflow_git_push()
+```
+
+In GitHub, enable Pages for the `docs/` folder on the `main` branch.
+
+Guidance here: https://docs.github.com/en/pages/quickstart
+
+After configured, this should look like the following:
+![](files/ghpages_settings.png)
+
+After a few minutes of setting this, the top part of the GitHub Pages for the repo (`https://github.com/<username>/<reponame>/settings/pages`) should
+look something like this:
+
+![](files/ghpages_url.png)
+
+### 6. Verify the published site
+
+Open your GitHub Pages site and confirm:
+
+- The home page loads
+- Your analysis page appears in the navigation
+- The analysis page renders your text and code output
+
+### Deliverables
+
+1. Provide the URL of your project site.
+2. Short reflection (2-3 sentences) on what was straightforward vs. confusing, what you think
+   may be helpful about this approach and/or what aspects you may adopt in your own workflows
