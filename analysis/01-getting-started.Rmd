@@ -1,0 +1,38 @@
+---
+title: "analysis/01-getting-started.Rmd"
+author: "Rhetta Power"
+date: "2026-01-27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+getwd()
+install.packages("here")  # only once
+library(here)
+biodiversity <- read.csv(here("data", "BIO.csv"))
+str(biodiversity)
+summary(biodiversity)
+```
+
+### This semester I plan to conduct a project using the ADAPT data set, examining AI-human substitution beliefs and AI idealizing beliefs. I am interested in what factors predict these beliefs, and how they change over time. I will use longitudinal data to assess how T1 AI beliefs develop at T2, and how they might relate to peoples' experiences of high-quality interactions with others. 
+
+
+
+```{r, eval = FALSE}
+file.exists("analysis/01-getting-started.Rmd")
+wflow_build("analysis/01-getting-started.Rmd") # build only one script
+wflow_build() # build the whole site
+wflow_status() # check the build status
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
